@@ -7,6 +7,7 @@ public class Main {
 	public static void main(String[] args) {
 		String[] membres = {"Youssef","Moussa","YLemti","Monir"};
 		String[] livres = {"Java","Php","Python"};
+		String[] livresemprunte = {"tintin","milou"};
 		Scanner scanner = new Scanner(System.in);
 		String affiche;
 		boolean end =true;
@@ -37,6 +38,7 @@ public class Main {
 					System.out.println("Total de membres = "+membres.length+" membre(s)");
 					break;
 				case 2:
+					System.out.println("Total de livres = "+livresemprunte.length+" livre(s)");
 					break;
 				case 3:
 					break;
