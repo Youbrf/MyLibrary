@@ -18,13 +18,13 @@ public class Main {
 						System.out.println("			MENU DES STATISTIQUE");
 						System.out.println("------------------------------------------------------------------");
 						System.out.println("	1 - nombre total de livres et de membres");
-						System.out.println("	2 - nombre de livres électroniques et de romans graphiques");
+						System.out.println("	2 - nombre de livres ï¿½lectroniques et de romans graphiques");
 						System.out.println("	3 - nombres de membres qui ont un livre en emprunt");
-						System.out.println("	4 - nombre de livres empruntés");
+						System.out.println("	4 - nombre de livres empruntï¿½s");
 						System.out.println("	5 - nombre de livres en retard");
 						System.out.println("	0 - quitter");
 					}else {
-						System.out.println("Votre entrer au clavier est incorrecte réessayer");
+						System.out.println("Votre entrer au clavier est incorrecte rï¿½essayer");
 					}
 				
 			} while (!affiche.equalsIgnoreCase("A"));
@@ -45,11 +45,11 @@ public class Main {
 				case 5:
 					break;
 				default:
-					System.out.println("bye bye, à bientôt");
+					System.out.println("bye bye, ï¿½ bientï¿½t");
 					end=false;
 					break;
 				}
 			}
 		} while (end);
 	}
-}
+}//ttyuuiiiiiiiiiiiiiii
