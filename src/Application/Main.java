@@ -1,12 +1,14 @@
 package Application;
 
 import java.util.Scanner;
+import java.util.UUID;
 
 public class Main {
 
 	public static void main(String[] args) {
 		String[] membres = {"Youssef","Moussa","YLemti","Monir"};
 		String[] livres = {"Java","Php","Python"};
+		String[] livresemprunte = {"tintin","milou"};
 		Scanner scanner = new Scanner(System.in);
 		String affiche;
 		boolean end =true;
@@ -18,13 +20,13 @@ public class Main {
 						System.out.println("			MENU DES STATISTIQUE");
 						System.out.println("------------------------------------------------------------------");
 						System.out.println("	1 - nombre total de livres et de membres");
-						System.out.println("	2 - nombre de livres ï¿½lectroniques et de romans graphiques");
+						System.out.println("	2 - nombre de livres électroniques et de romans graphiques");
 						System.out.println("	3 - nombres de membres qui ont un livre en emprunt");
-						System.out.println("	4 - nombre de livres empruntï¿½s");
+						System.out.println("	4 - nombre de livres empruntés");
 						System.out.println("	5 - nombre de livres en retard");
 						System.out.println("	0 - quitter");
 					}else {
-						System.out.println("Votre entrer au clavier est incorrecte rï¿½essayer");
+						System.out.println("Votre entrer au clavier est incorrecte réessayer");
 					}
 				
 			} while (!affiche.equalsIgnoreCase("A"));
@@ -37,6 +39,7 @@ public class Main {
 					System.out.println("Total de membres = "+membres.length+" membre(s)");
 					break;
 				case 2:
+					System.out.println("Total de livres = "+livresemprunte.length+" livre(s)");
 					break;
 				case 3:
 					break;
@@ -45,11 +48,11 @@ public class Main {
 				case 5:
 					break;
 				default:
-					System.out.println("bye bye, ï¿½ bientï¿½t");
+					System.out.println("bye bye, à bientôt");
 					end=false;
 					break;
 				}
 			}
 		} while (end);
 	}
-}//ttyuuiiiiiiiiiiiiiii
+}
