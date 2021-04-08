@@ -100,7 +100,24 @@ public class Book {
     }
     public void setAuthor(String author){}
 
-    public LocalDate getLoanPeriod() {
+    
+    
+    public int getTotalPages() {
+		return totalPages;
+	}
+
+
+	public double getRentalPrice() {
+		return rentalPrice;
+	}
+
+
+	public String getLanguage() {
+		return language;
+	}
+
+
+	public LocalDate getLoanPeriod() {
         return loanPeriod;
     }
     public void setLoanPeriod(int years,int month,int daysOfMonth) {

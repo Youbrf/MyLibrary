@@ -56,3 +56,69 @@ public class Main {
 		} while (end);
 	}
 }
+/**
+ * 
+ * 
+ * 
+Scanner sc = new Scanner(System.in);
+int menu;
+//System.out.println("Bienvenue dans le monde de narnia");
+//System.out.println("tape 1 pour afficher le menu ");
+
+MyLibrary Ixelle = new MyLibrary("Ixelle");
+MyLibrary Uccle = new MyLibrary("Uccle");
+
+System.out.println(Ixelle);
+System.out.println(Uccle);
+Person bingo = new Person("bingo",(byte)3);
+Person Ruth = new Person("bingo3",(byte)3);
+Book bingo1 = new Book("One Peace","Eiichiro Oda",456,1.2,"Français");
+Uccle.addPerson(Ruth);
+Ixelle.addPerson(bingo);
+Uccle.addBook(bingo1);
+System.out.println("----------------------------------------------------------------------------");
+
+System.out.println(Ixelle);
+System.out.println(Uccle);
+
+menu = sc.nextInt();
+if(menu==1) {
+	System.out.println("----------- Menu -------------\n");
+	System.out.println("	1. Ajouter un membre");
+	System.out.println("	2. Ajouter un livre");
+	System.out.println("	3. Emprunter un livre");
+	System.out.println("	4. Afficher les statistiques");
+	System.out.println("	0. Quitter");
+	System.out.println("\n Veuillez choisir une option\n");
+}
+int choix = sc.nextInt();
+if(choix>=0 && choix<=4) {
+	switch (choix) {
+	case 1:
+		String off = sc.nextLine();
+		System.out.println("---- Ajouter un membre ----\n");
+		System.out.println("Veuillez introduire le nom du membre à ajouter :");
+		String nom = sc.nextLine();
+		System.out.println("Veuillez introduire le nombre de livres maximum que le membre peut emprunter :");
+		Byte empruntmax = sc.nextByte();
+		Person membre = new Person(nom,empruntmax);
+		System.out.println(membre);
+		break;
+	case 2:
+		break;
+	case 3:
+		break;
+	case 4:
+		break;
+	default:
+		System.out.println("bye bye, à bientôt");
+		break;
+	}
+}else {
+	System.out.println("Erreur, veuillez réintroduire une option");	
+}
+
+
+ * 
+ * 
+ */

@@ -1,16 +1,37 @@
 package Application;
 
+import java.util.Scanner;
 import java.util.UUID;
+
+import javax.swing.JOptionPane;
 
 public class Apptest {
     public static void main(String[] args) {
-         Person person = new Person(UUID.randomUUID(),"Youssef");
-         Book livre1 = new Book("One Peace","Eiichiro Oda",456,1.2,"Français");
-         Book livre2 = new Book("Naruto","Masashi Kishimoto",432,1,"Français");
+    
+    	
+    	   	 MyLibrary mlib = new MyLibrary("bingo");
+         
+    	   	 System.out.println(mlib);
+         
+    	  	 System.out.println("------------------------------------------------------------");
 
-         person.borrows(livre1,2021,4,2);
-         person.borrows(livre2,2021,10,3);
-         livre1.computeRemainingDays();
-        System.out.println(person);
+    	  	 mlib.loadMembers("database/membres.csv");
+    	
+    	  	 System.out.println("------------------------------------------------------------");
+         
+    	  	 System.out.println(mlib);
+    	  	 
+    	  	 Person person = new Person(UUID.randomUUID(),"Bilal");
+    	  	 
+    	  	 mlib.addPerson(person);
+    	  	 
+    	  	 System.out.println("------------------------------------------------------------");
+    	  	 System.out.println("------------------------------------------------------------");
+    	 
+    	  	 System.out.println(mlib);
+    	  	 
+    	  	 mlib.saveMembers("database/membres.csv");
+    	  	 
+        
     }
 }

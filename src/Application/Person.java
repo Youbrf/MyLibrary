@@ -1,7 +1,5 @@
 package Application;
 
-import com.sun.xml.internal.bind.v2.TODO;
-
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Scanner;
@@ -23,6 +21,13 @@ public class Person {
         this.id=id;
         this.name=name;
         this.maxBooks=3;
+        this.registrationDate=LocalDate.now();
+        this.books=new ArrayList<Book>();
+    }
+    public Person(String name, Byte maxBooks){
+        this.id=UUID.randomUUID();
+        this.name=name;
+        this.maxBooks=maxBooks;
         this.registrationDate=LocalDate.now();
         this.books=new ArrayList<Book>();
     }
@@ -81,7 +86,7 @@ public class Person {
     public String toString() {
         final int maxLen=3;
         return "Person [" + id + ": " + name + " (maxBooks=" + maxBooks + ", inscrit le "
-                + registrationDate + ")\n books="
+                + registrationDate + ")\n livre de la personne ="
                 + (books != null ? books.subList(0, Math.min(books.size(), maxLen)) : null) + "]";
     }
 }

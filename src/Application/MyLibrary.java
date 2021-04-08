@@ -1,7 +1,17 @@
 package Application;
 
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.Iterator;
+import java.util.UUID;
+
+import javax.swing.JOptionPane;
 
 public class MyLibrary {
         /**
@@ -103,12 +113,170 @@ public class MyLibrary {
                 }
                 return cpt;
             }
+        /**
+         * charger des membres à partir d'un fichiers de sauvegarde au format CSV
+         * @param filename nom du fichier CSV
+         * @return
+         */
+        public int loadMembers(String filename) { 
+        	int cpt = 0;
+        	File f = new File(filename);
+        	if(f.exists()) { 
+        		FileReader fr = null; 
+        		BufferedReader br = null; 
+        		String[] data = null; 
+        		try { 
+        			try { 
+        				fr = new FileReader(f); 
+        				br = new BufferedReader(fr); 
+        				//Convertir en objet Person 
+        				//StringTokenizer st = new StringTokenizer(ligne, ";"); 
+        				String ligne = br.readLine(); 
+        				//Lire une ligne du fichier 
+        				while ((ligne = br.readLine()) != null) {
+        					//"a7aa0ae7-9ce3-44bc-a72a-894edb9a4653;Bob Smith;2;01-03-20" 
+        					data = ligne.split(";"); 
+        					Person p = new Person(UUID.fromString(data[0]), data[1]); 
+        					//ajouter cette Person dans people 
+        					this.people.add(p);
+        					cpt++;
+        					} 
+        				} finally {
+        					br.close();
+        					fr.close();
+        					} 
+        			} catch (IOException e) {
+        				
+        			} 
+        		} 
+        	return cpt;
+        	}
+        /**
+         * Charger des livres à partir d'un fichiers de sauvegarde au format CSV
+         * @param filename
+         * @return
+         */
+        public int loadBooks(String filename) {
+			int cpt=0;
+			File f = new File(filename);
+        	if(f.exists()) { 
+        		FileReader fr = null; 
+        		BufferedReader br = null; 
+        		String[] data = null; 
+        		try { 
+        			try { 
+        				fr = new FileReader(f); 
+        				br = new BufferedReader(fr); 
+        				String ligne = br.readLine(); 
+        				while ((ligne = br.readLine()) != null) { 
+        					data = ligne.split(";"); 
+        					Book book = new Book(data[0],data[1],Integer.parseInt(data[2]),Double.parseDouble(data[3]),data[4]); 
+        					this.books.add(book);
+        					cpt++;
+        					} 
+        				} finally {
+        					br.close();
+        					fr.close();
+        					} 
+        			} catch (IOException e) {
+        				
+        			} 
+        		} 
+        	return cpt;
+        }
 
+      //Save members in .csv
+        public int saveMembers(String filename) {
+        	int cpt=0;
+        	File file=new File(filename);
+        	
+        	if(!file.exists()) {
+        		try {
+					file.createNewFile();
+				} catch (IOException e) {
+					JOptionPane.showMessageDialog(null, "Impossible de crée le fichier, veuillez réessayer, Merci");
+				}
+        	}else {
+        		FileWriter fw;
+        		BufferedWriter bw;
+        		PrintWriter pw;
+				try {
+					fw = new FileWriter(file);
+					bw = new BufferedWriter(fw);
+					pw = new PrintWriter(bw);
+					Iterator<Person> itp = this.getPeople().iterator();
+		               while(itp.hasNext()) {
+		                   Person person = itp.next();
+		                   pw.println(person.id+";"+person.getName()+";"+person.getMaxBooks()+";"+person.getRegistrationDate());
+		                   cpt++;
+		               }
+		            JOptionPane.showMessageDialog(null, "Les membres ont bien été écrit dans le fichier");
+					pw.flush();
+					pw.close();
+					bw.close();
+					fw.close();
+					
+				} catch (IOException e) {
+					JOptionPane.showMessageDialog(null,"Mode Ruth , psaha la harira");
+				}
+        		
+        		
+        	}
+        	
+        	return cpt;
+        }
+      //Save Books in .csv
+        public int saveBooks(String filename) {
+        	int cpt=0;
+        	File file=new File(filename);
+        	
+        	if(!file.exists()) {
+        		try {
+					file.createNewFile();
+				} catch (IOException e) {
+					JOptionPane.showMessageDialog(null, "Impossible de crée le fichier, veuillez réessayer, Merci");
+				}
+        	}else {
+        		FileWriter fw;
+        		BufferedWriter bw;
+        		PrintWriter pw;
+				try {
+					fw = new FileWriter(file);
+					bw = new BufferedWriter(fw);
+					pw = new PrintWriter(bw);
+					Iterator<Book> itp = this.getBooks().iterator();
+		               while(itp.hasNext()) {
+		                   Book book1 = itp.next();
+		                   pw.println(book1.getTitle()+";"
+		                		   		+book1.getAuthor()+";"
+		                		   		+book1.getTotalPages()+";"
+		                		   		+book1.getRentalPrice()+";"
+		                		   		+book1.getLanguage());
+		                   cpt++;
+		               }
+		            JOptionPane.showMessageDialog(null, "Les membres ont bien été écrit dans le fichier");
+					pw.flush();
+					pw.close();
+					bw.close();
+					fw.close();
+					
+				} catch (IOException e) {
+					JOptionPane.showMessageDialog(null,"Impossible d'écrire dans le fichier, veuillez fermer le document, merci");
+				}
+        		
+        		
+        	}
+        	
+        	return cpt;
+        }
+        
+        
+        
     @Override
         public String toString() {
             final int maxLen = 3;
-            return "MyLibrary " + name + ": books="
-                    + (books != null ? books.subList(0, Math.min(books.size(), maxLen)) : null) + ",people="
+            return "MyLibrary " + name + ": books ="
+                    + (books != null ? books.subList(0, Math.min(books.size(), maxLen)) : null) + ",people ="
                     + (people != null ? people.subList(0, Math.min(people.size(), maxLen)) : null);
         }
 
