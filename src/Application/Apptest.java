@@ -14,24 +14,23 @@ public class Apptest {
     	   	 System.out.println(mlib);
          
     	  	 System.out.println("------------------------------------------------------------");
-
-    	  	 mlib.loadMembers("database/membres.csv");
     	
     	  	 System.out.println("------------------------------------------------------------");
-         
-    	  	 System.out.println(mlib);
     	  	 
     	  	 Person person = new Person(UUID.randomUUID(),"Bilal");
+    	  	 Person person1 = new Person(UUID.randomUUID(),"Youssef");
+    	  	 Person person2 = new Person(UUID.randomUUID(),"Moussa");
     	  	 
     	  	 mlib.addPerson(person);
+    	  	 mlib.addPerson(person1);
+    	  	 mlib.addPerson(person2);
     	  	 
-    	  	 System.out.println("------------------------------------------------------------");
-    	  	 System.out.println("------------------------------------------------------------");
-    	 
     	  	 System.out.println(mlib);
     	  	 
-    	  	 mlib.saveMembers("database/membres.csv");
+    	  	 System.out.println("------------------------------------------------------------");
+    	  	 System.out.println("------------------------------------------------------------");
     	  	 
+    	  	 mlib.findMemberByName("bilal");
         
     }
 }

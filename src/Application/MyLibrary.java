@@ -77,7 +77,6 @@ public class MyLibrary {
         public void addBook(Book book) {
             this.books.add(book);
         }
-
         /**
          * Ajouter des membres
          * @param person
@@ -85,7 +84,6 @@ public class MyLibrary {
         public void addPerson(Person person) {
                 this.people.add(person);
             }
-
         /**
          * Afficher des livres
           * @return
@@ -99,7 +97,6 @@ public class MyLibrary {
                 }
                 return cpt;
             }
-
         /**
          * Afficher des membres
          * @return
@@ -113,6 +110,20 @@ public class MyLibrary {
                 }
                 return cpt;
             }
+        
+        public Boolean findMemberByName(String name){
+        	Boolean find = false; 
+        	Iterator<Person> itp = this.getPeople().iterator();
+        	while(itp.hasNext()) {
+        		Person membre = itp.next();
+        		if(name.equalsIgnoreCase(membre.getName())) {
+        			System.out.println(membre);
+        			find = true;
+        		};
+        	}
+        	return find ;
+        }
+
         /**
          * charger des membres à partir d'un fichiers de sauvegarde au format CSV
          * @param filename nom du fichier CSV
@@ -184,8 +195,11 @@ public class MyLibrary {
         		} 
         	return cpt;
         }
-
-      //Save members in .csv
+        /**
+         * Enregistre les membres dans un fichier CSV
+         * @param filename Chemin du fichier
+         * @return
+         */
         public int saveMembers(String filename) {
         	int cpt=0;
         	File file=new File(filename);
@@ -225,7 +239,11 @@ public class MyLibrary {
         	
         	return cpt;
         }
-      //Save Books in .csv
+        /**
+         * Enregistre les livres dans un fichier CSV
+         * @param filename Chemin du fichier
+         * @return
+         */
         public int saveBooks(String filename) {
         	int cpt=0;
         	File file=new File(filename);
@@ -269,9 +287,7 @@ public class MyLibrary {
         	
         	return cpt;
         }
-        
-        
-        
+     
     @Override
         public String toString() {
             final int maxLen = 3;
