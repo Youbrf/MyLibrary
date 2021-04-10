@@ -154,8 +154,8 @@ public class Book {
      */
     @Override
     public String toString() {
-        return "title = "+title+", auteur = "+author+", nombre de page = "+totalPages
-                +" | Emprunté par = "+person.getName()+", le "+borrowingDate;
+        return "title = "+title+", auteur = "+author+", nombre de page = "+totalPages+"\n";
+                //+" | Emprunté par = "+person.getName()+", le "+borrowingDate;
     }
 
 

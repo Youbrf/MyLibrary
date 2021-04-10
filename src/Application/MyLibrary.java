@@ -1,5 +1,7 @@
 package Application;
 
+import static java.time.temporal.ChronoUnit.DAYS;
+
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
@@ -7,6 +9,7 @@ import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.UUID;
@@ -110,7 +113,11 @@ public class MyLibrary {
                 }
                 return cpt;
             }
-        
+        /**
+         * Trouver un membre au moyen de son nom.
+         * @param name nom de la personne à chercher
+         * @return
+         */
         public Boolean findMemberByName(String name){
         	Boolean find = false; 
         	Iterator<Person> itp = this.getPeople().iterator();
@@ -123,7 +130,23 @@ public class MyLibrary {
         	}
         	return find ;
         }
-
+        /**
+         * Récupérer les livres en retard,
+         * @return retourne la liste des livres en retard
+         */
+        public ArrayList<Book> getAllLateBooks() {
+			ArrayList<Book> bookresult = new ArrayList<>();
+			Iterator<Book> itb = this.getBooks().iterator();
+			while(itb.hasNext()) {
+				Book bookcop = itb.next();
+				long daysbetween = DAYS.between(LocalDate.now(),bookcop.getLoanPeriod());
+				if(daysbetween < 0) {
+					bookresult.add(bookcop);
+				}
+			}
+        	return bookresult;
+        }
+        
         /**
          * charger des membres à partir d'un fichiers de sauvegarde au format CSV
          * @param filename nom du fichier CSV
@@ -291,8 +314,8 @@ public class MyLibrary {
     @Override
         public String toString() {
             final int maxLen = 3;
-            return "MyLibrary " + name + ": books ="
-                    + (books != null ? books.subList(0, Math.min(books.size(), maxLen)) : null) + ",people ="
+            return "MyLibrary " + name + ":\n books =\n"
+                    + (books != null ? books.subList(0, Math.min(books.size(), maxLen)) : null) + ",\npeople =\n"
                     + (people != null ? people.subList(0, Math.min(people.size(), maxLen)) : null);
         }
 

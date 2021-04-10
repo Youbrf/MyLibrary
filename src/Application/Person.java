@@ -65,7 +65,7 @@ public class Person {
      *Methode qui permet d'emprunter un livre
      * @param book
      */
-    public void borrows(Book book,int years,int month,int daysOfMonth) {
+    public void borrows(Book book,int daysOfMonth,int month,int years) {
         this.books.add(book);
         book.setBorrower(this);
         book.setBorrowingDate(LocalDate.now());
@@ -86,7 +86,7 @@ public class Person {
     public String toString() {
         final int maxLen=3;
         return "Person [" + id + ": " + name + " (maxBooks=" + maxBooks + ", inscrit le "
-                + registrationDate + ")\n livre de la personne ="
-                + (books != null ? books.subList(0, Math.min(books.size(), maxLen)) : null) + "]";
+                + registrationDate + ") - livre ="
+                + (books != null ? books.subList(0, Math.min(books.size(), maxLen)) : null) + "]\n";
     }
 }
