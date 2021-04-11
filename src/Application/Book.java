@@ -88,7 +88,11 @@ public class Book {
         this.days = days;
     }
 
-    public String getTitle() {
+    public Person getPerson() {
+		return person;
+	}
+
+	public String getTitle() {
         return title;
     }
     public void setTitle(String title) {
@@ -123,7 +127,10 @@ public class Book {
     public void setLoanPeriod(int years,int month,int daysOfMonth) {
         this.loanPeriod = LocalDate.of(years,month,daysOfMonth);
     }
-
+    public void setLoanPeriod(int days) {
+    	this.loanPeriod = LocalDate.now().plusDays(days);
+		
+	}
     public LocalDate getBorrowingDate() {
         return borrowingDate;
     }
@@ -157,6 +164,9 @@ public class Book {
         return "title = "+title+", auteur = "+author+", nombre de page = "+totalPages+"\n";
                 //+" | Emprunté par = "+person.getName()+", le "+borrowingDate;
     }
+
+
+	
 
 
 

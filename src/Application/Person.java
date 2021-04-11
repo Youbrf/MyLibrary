@@ -9,6 +9,7 @@ public class Person {
     protected UUID id;
     private String name;
     private Byte maxBooks;
+    private Byte bookBorrow;
     private final LocalDate registrationDate;
     private ArrayList<Book> books;
 
@@ -21,6 +22,7 @@ public class Person {
         this.id=id;
         this.name=name;
         this.maxBooks=3;
+        this.bookBorrow=0;
         this.registrationDate=LocalDate.now();
         this.books=new ArrayList<Book>();
     }
@@ -28,6 +30,7 @@ public class Person {
         this.id=UUID.randomUUID();
         this.name=name;
         this.maxBooks=maxBooks;
+        this.bookBorrow=0;
         this.registrationDate=LocalDate.now();
         this.books=new ArrayList<Book>();
     }
@@ -51,8 +54,14 @@ public class Person {
     public void setMaxBooks(Byte maxBooks) {
         this.maxBooks = maxBooks;
     }
-
-    public LocalDate getRegistrationDate() {
+    
+    public Byte getBookBorrow() {
+		return bookBorrow;
+	}
+	public void setBookBorrow(Byte bookBorrow) {
+		this.bookBorrow = bookBorrow;
+	}
+	public LocalDate getRegistrationDate() {
         return registrationDate;
     }
 
@@ -66,10 +75,29 @@ public class Person {
      * @param book
      */
     public void borrows(Book book,int daysOfMonth,int month,int years) {
-        this.books.add(book);
-        book.setBorrower(this);
-        book.setBorrowingDate(LocalDate.now());
-        book.setLoanPeriod(years,month,daysOfMonth);
+        if(this.bookBorrow < this.maxBooks) {
+        	this.books.add(book);
+        	book.setBorrower(this);
+        	book.setBorrowingDate(LocalDate.now());
+        	book.setLoanPeriod(years,month,daysOfMonth);
+        	this.bookBorrow = (byte) (this.bookBorrow + 1);
+        }else {
+        	System.out.println(this.getName() +" Le nombre de livre emprunté est déjà atteint, veuillez restituer un livre pour en prendre un nouveau.");
+        }
+    	
+        
+    }
+    public void borrows(Book book, int days) {
+    	if(this.bookBorrow < this.maxBooks) {
+    		this.books.add(book);
+    		book.setBorrower(this);
+    		book.setBorrowingDate(LocalDate.now());
+    		book.setLoanPeriod(days);
+    		this.bookBorrow = (byte) (this.bookBorrow + 1);
+    	}else {
+        	System.out.println("Le nombre de livre emprunté est déjà atteint, veuillez restituer un livre pour en prendre un nouveau.");
+        }
+    	
     }
 
     /**
@@ -80,6 +108,7 @@ public class Person {
         this.books.remove(book);
         book.setBorrower(null);
         book.setBorrowingDate(null);
+        this.bookBorrow = (byte)(this.bookBorrow-1);
     }
 
     @Override

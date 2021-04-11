@@ -12,6 +12,7 @@ import java.io.PrintWriter;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Iterator;
+import java.util.Scanner;
 import java.util.UUID;
 
 import javax.swing.JOptionPane;
@@ -81,12 +82,26 @@ public class MyLibrary {
             this.books.add(book);
         }
         /**
+         * Supprimer des livres
+         * @param book livre a supprimé
+         */
+        public void removeBook(Book book) {
+        	this.books.remove(book);
+        }
+        /**
          * Ajouter des membres
          * @param person
          */
         public void addPerson(Person person) {
-                this.people.add(person);
+            this.people.add(person);
             }
+        /**
+         * Supprimer des membres
+         * @param person personne a supprimé
+         */
+        public void removePerson(Person person) {
+        	this.people.remove(person);
+        }
         /**
          * Afficher des livres
           * @return
@@ -118,17 +133,32 @@ public class MyLibrary {
          * @param name nom de la personne à chercher
          * @return
          */
-        public Boolean findMemberByName(String name){
-        	Boolean find = false; 
+        public Person findMemberByName(String name){
+        	Scanner sc = new Scanner(System.in);
+        	int cpt = 0;
+        	ArrayList<Person> memberAvailible = new ArrayList<>();
+        	ArrayList<Person> memberNoAvailible = new ArrayList<>();
         	Iterator<Person> itp = this.getPeople().iterator();
         	while(itp.hasNext()) {
         		Person membre = itp.next();
-        		if(name.equalsIgnoreCase(membre.getName())) {
-        			System.out.println(membre);
-        			find = true;
+        		if(membre.getName().contains(name) && membre.getBookBorrow() < membre.getMaxBooks()) {
+        			memberAvailible.add(membre);
+        		}else if(membre.getName().contains(name) && membre.getBookBorrow() >= membre.getMaxBooks()){
+        			memberNoAvailible.add(membre);
         		};
         	}
-        	return find ;
+        	System.out.println("Personne disponible : ");
+        	for (Person person : memberAvailible) {
+				System.out.println(++cpt +" : "+ person.getName()+" - livre emprunté : "+person.getBookBorrow());
+			}
+        	System.out.println("Personne non disponible :");
+        	for (Person person : memberNoAvailible) {
+				System.out.println(person.getName()+" - livre emprunté : "+person.getBookBorrow());
+			}
+        	System.out.println("Introduiser le numero du livre que vous voulez emprunter :");
+			int choixEmprunt = sc.nextInt();
+			
+        	return memberAvailible.get(choixEmprunt-1) ;
         }
         /**
          * Récupérer les livres en retard,
@@ -146,7 +176,37 @@ public class MyLibrary {
 			}
         	return bookresult;
         }
-        
+        /**
+         * Cherche un livre
+         * @param title titre du livre à rechercher
+         */
+        public Book searchBook(String title) {
+        	Scanner sc = new Scanner(System.in);
+        	int cpt = 0;
+        	ArrayList<Book> bookAvailible = new ArrayList<>();
+        	ArrayList<Book> bookNoAvailible = new ArrayList<>();
+        	Iterator<Book> itb = this.getBooks().iterator();
+        	while(itb.hasNext()) {
+        		Book bookcop = itb.next();
+        		if(bookcop.getTitle().contains(title) && bookcop.getPerson() == null) {
+        			bookAvailible.add(bookcop);
+        		}else if (bookcop.getTitle().contains(title) && bookcop.getPerson() != null){
+        			bookNoAvailible.add(bookcop);
+        		}
+        	}
+        	System.out.println("Livre disponible : ");
+        	for (Book book : bookAvailible) {
+				System.out.println(++cpt +" : "+ book.getTitle());
+			}
+        	System.out.println("Livre non disponible :");
+        	for (Book book : bookNoAvailible) {
+				System.out.println(book.getTitle());
+			}
+        	System.out.println("Introduiser le numero du livre que vous voulez emprunter :");
+			int choixEmprunt = sc.nextInt();
+			
+			return bookAvailible.get(choixEmprunt-1);
+        }
         /**
          * charger des membres à partir d'un fichiers de sauvegarde au format CSV
          * @param filename nom du fichier CSV
