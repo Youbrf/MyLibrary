@@ -150,10 +150,11 @@ public class Book {
     /**
      * ComputeRemainingDays calcule le nombre de jours restants avant
      * restitution du livre.
+     * @return 
      */
-    public void computeRemainingDays(){
+    public long computeRemainingDays(){
        long daysbetween = DAYS.between(LocalDate.now(),loanPeriod);
-        System.out.println("bingo ="+ daysbetween);
+        return daysbetween;
     }
     /**
      * toString, retourne les valeurs du livres.

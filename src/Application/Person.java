@@ -12,7 +12,7 @@ public class Person {
     private Byte bookBorrow;
     private final LocalDate registrationDate;
     private ArrayList<Book> books;
-
+    
     /**
      * Constructeur avec deux parametres
      * @param id  id de la personne
@@ -75,7 +75,7 @@ public class Person {
      * @param book
      */
     public void borrows(Book book,int daysOfMonth,int month,int years) {
-        if(this.bookBorrow < this.maxBooks) {
+        if(this.bookBorrow < this.maxBooks && book.getPerson()==null) {
         	this.books.add(book);
         	book.setBorrower(this);
         	book.setBorrowingDate(LocalDate.now());
@@ -88,15 +88,17 @@ public class Person {
         
     }
     public void borrows(Book book, int days) {
-    	if(this.bookBorrow < this.maxBooks) {
+    	if(this.bookBorrow < this.maxBooks && book.getPerson()==null) {
     		this.books.add(book);
     		book.setBorrower(this);
     		book.setBorrowingDate(LocalDate.now());
     		book.setLoanPeriod(days);
     		this.bookBorrow = (byte) (this.bookBorrow + 1);
     	}else {
-        	System.out.println("Le nombre de livre emprunté est déjà atteint, veuillez restituer un livre pour en prendre un nouveau.");
-        }
+    		System.out.println("      ------- Error book borrows ---------");
+        	System.out.println(this.getName()+ " ne peux pas emprunté ce livre \nsoit parce que le livre n'est plus disponible \nsoit parce que vous avez atteint le nombre d'emprunt");
+        	System.out.println("_______________________________________________________________________________________________");
+    	}
     	
     }
 
