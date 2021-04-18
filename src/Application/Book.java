@@ -25,85 +25,62 @@ public class Book  {
 	 * Le prix de la location
 	 * L'emprunteur
 	 * Date de l'emprunt
-	 * Durée d el'emprunt
+	 * Durée de l'emprunt
 	 */
-private String titles,author,language;
-  private int nbrepages;
+  private String titles,author,language;
   private double rentalprice;
   private int totalPages;
   private Person person;
   private LocalDate borrowingDate;
   private LocalDate loanPeriod;
- 
- 
-/**
- * @param titles
- * @param author
- * @param language
- * @param totalPages
- * @param rentalprice
- */
-public Book(String titles, String author, String language, int totalPages, double rentalprice) {
+  private boolean emprunte;
+  private int years;
+  private int month;
+  private int days;
 
+ // --Constructeur "BOOK"--
+
+  /**
+   * @param titles
+   * @param author
+   * @param language
+   * @param rentalprice
+   * @param totalPages
+   * @param borrowingDate
+   
+   */
+  public Book(String titles, String author, String language, double rentalprice, int totalPages
+  		) {
+  	super();
+  	this.titles = titles;
+  	this.author = author;
+  	this.language = language;
+  	this.rentalprice = rentalprice;
+  	this.totalPages = totalPages;
+  	this.emprunte=false;
+  	this.loanPeriod=loanPeriod;
+  	this.years=years;
+  	this.month=month;
+  	this.days= days;
+  }
+
+/**
+ * @return the titles
+ */
+public String getTitles() {
+	return titles;
+}
+
+
+
+
+/**
+ * @param titles the titles to set
+ */
+public void setTitles(String titles) {
 	this.titles = titles;
-	this.author = author;
-	this.language = language;
-	this.totalPages = totalPages;
-	this.rentalprice = rentalprice;
 }
 
-
-
-//getters et setters :
-
-/**
- * @return the loanPeriod
- */
-public LocalDate getLoanPeriod() {
-	return loanPeriod;
-}
-
-/**
- * @param loanPeriod the loanPeriod to set
- */
-public void setLoanPeriod(LocalDate loanPeriod) {
-	this.loanPeriod = loanPeriod;
-}
-/**
- * @return the borrowingDate
- */
-public LocalDate getBorrowingDate() {
-	return borrowingDate;
-}
-
-/**
- * @param borrowingDate the borrowingDate to set
- */
-public void setBorrowingDate(LocalDate borrowingDate) {
-	this.borrowingDate = borrowingDate;
-}
-
-
-/**
- * @return the years
- */
-public int getYears() {
-	return years;
-}
-
-/**
- * @param years the years to set
- */
-public void setYears(int years) {
-	this.years = years;
-}
-
-/**
- * @return the month
- */
-public int getMonth() {
-	return month;
-}
 
 /**
  * @return the author
@@ -111,7 +88,6 @@ public int getMonth() {
 public String getAuthor() {
 	return author;
 }
-
 
 
 /**
@@ -122,6 +98,156 @@ public void setAuthor(String author) {
 }
 
 
+/**
+ * @return the language
+ */
+public String getLanguage() {
+	return language;
+}
+
+
+/**
+ * @param language the language to set
+ */
+public void setLanguage(String language) {
+	this.language = language;
+}
+
+
+
+
+/**
+ * @return the rentalprice
+ */
+public double getRentalprice() {
+	return rentalprice;
+}
+
+
+/**
+ * @param rentalprice the rentalprice to set
+ */
+public void setRentalprice(double rentalprice) {
+	this.rentalprice = rentalprice;
+}
+
+
+/**
+ * @return the totalPages
+ */
+public int getTotalPages() {
+	return totalPages;
+}
+
+
+/**
+ * @param totalPages the totalPages to set
+ */
+public void setTotalPages(int totalPages) {
+	this.totalPages = totalPages;
+}
+
+
+/**
+ * @return the person
+ */
+public Person getBorrower() {
+	return person;
+}
+
+
+/**
+ * @param person the person to set
+ */
+public void setBorrower(Person person) {
+	this.person = person;
+}
+
+
+/**
+ * @return the person
+ */
+public Person getPerson() {
+	return person;
+}
+
+/**
+ * @param person the person to set
+ */
+public void setPerson(Person person) {
+	this.person = person;
+}
+
+/**
+ * @return the borrowingDate
+ */
+public LocalDate getBorrowingDate() {
+	return borrowingDate;
+}
+
+
+/**
+ * @param borrowingDate the borrowingDate to set
+ */
+public void setBorrowingDate(LocalDate borrowingDate) {
+	this.borrowingDate = borrowingDate;
+}
+
+
+/**
+ * @return the loanPeriod
+ */
+public LocalDate getLoanPeriod() {
+	return loanPeriod;
+}
+
+
+/**
+ * @param loanPeriod the loanPeriod to set
+ */
+public void setLoanPeriod(LocalDate loanPeriod) {
+	this.loanPeriod = loanPeriod;
+}
+
+
+/**
+ * @return the isEmprunte
+ */
+public boolean isEmprunte() {
+	return emprunte;
+}
+
+/**
+ * @param Booleanthe isEmprunte to set
+ */
+
+public void setEmprunte(boolean emprunte) {
+	this.emprunte = emprunte;
+}
+
+/**
+ * @return the years
+ */
+public int getYears() {
+	return years;
+}
+
+
+/**
+ * @param years the years to set
+ */
+public void setYears(int years) {
+	this.years = years;
+}
+
+
+/**
+ * @return the month
+ */
+public int getMonth() {
+	return month;
+}
+
 
 /**
  * @param month the month to set
@@ -130,44 +256,37 @@ public void setMonth(int month) {
 	this.month = month;
 }
 
+
 /**
- * @return the daysOfMonth
+ * @return the days
  */
-public int getDaysOfMonth() {
+public int getDays() {
 	return days;
 }
 
-/**
- * @param daysOfMonth the daysOfMonth to set
- */
-public void setDaysOfMonth(int daysOfMonth) {
-	this.days = daysOfMonth;
-}
 
 /**
- * @param person personne qui a emprunté le livre
+ * @param days the days to set
  */
-public void setBorrower(Person person) {
-    this.person=person;
+public void setDays(int days) {
+	this.days = days;
 }
-public Person getBorrower(){
-	return person;
-	}
+
 
 /**
  * Methodes :
  */
 
-int years,month,days;
-
- public void  setLoanPeriod(int years,int month,int days) {
+public void  setLoanPeriod(int years,int month,int days) {
 this.loanPeriod =LocalDate.of(years,month,days);
 }
  
  
-public void computeRemainingDays() {
+public long computeRemainingDays() {
+
 	long noOfDaysBetween = LocalDate.now().until(loanPeriod, ChronoUnit.DAYS);
-	System.out.println("Le nombre de jours restants est de =" + noOfDaysBetween);
+	
+	return  noOfDaysBetween ;
     }
 	
 
@@ -181,21 +300,14 @@ public int OnlineBook(int maxPeople,Book content) {
 
 @Override
 public String toString() {
-return"Book [titles=" + titles + ", author=" + author + ", language=" + language + ", nbrepages=" + nbrepages
-			+ ", rentalprice=" + rentalprice + ", totalPages=" + totalPages + "]";
+return"Book [titles=" + titles + ", author=" + author + ", language=" + language 
+			+ ", rentalprice=" + rentalprice + ", totalPages=" + totalPages + "]\n";
 	 
 
 }
 
 
 
- 
-
-
-
- 
-
- 
 }
 
 
